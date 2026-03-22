@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hybrid Crypto Bot</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Hybrid Crypto Bot</h1>
+        <p class="sub">AI regime selector + AI trade filter + stricter risk engine</p>
+      </div>
+      <div class="actions">
+        <button id="startBtn">Start</button>
+        <button id="stopBtn" class="secondary">Stop</button>
+        <button id="tickBtn" class="secondary">Run One Tick</button>
+      </div>
+    </header>
+
+    <section class="controls card">
+      <div class="field">
+        <label>Mode</label>
+        <select id="modeSelect">
+          <option value="paper">Paper</option>
+          <option value="live">Live</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Symbol</label>
+        <input id="symbolInput" value="BTC" />
+      </div>
+      <div class="field">
+        <label>Interval</label>
+        <select id="intervalSelect">
+          <option>15m</option>
+          <option selected>1h</option>
+          <option>4h</option>
+          <option>1d</option>
+        </select>
+      </div>
+      <div class="field checkbox">
+        <label><input type="checkbox" id="aiCheckbox" checked /> AI enabled</label>
+      </div>
+      <div class="field checkbox">
+        <label><input type="checkbox" id="killSwitchCheckbox" /> Kill switch</label>
+      </div>
+      <button id="saveBtn">Save Settings</button>
+    </section>
+
+    <section class="grid metrics">
+      <div class="card"><span>Cash</span><strong id="cash">-</strong></div>
+      <div class="card"><span>Equity</span><strong id="equity">-</strong></div>
+      <div class="card"><span>Realized PnL</span><strong id="realized">-</strong></div>
+      <div class="card"><span>Unrealized PnL</span><strong id="unrealized">-</strong></div>
+      <div class="card"><span>Last Price</span><strong id="lastPrice">-</strong></div>
+      <div class="card"><span>Last Signal</span><strong id="lastSignal">-</strong></div>
+      <div class="card"><span>Regime</span><strong id="lastRegime">-</strong></div>
+      <div class="card"><span>Filter Confidence</span><strong id="lastConfidence">-</strong></div>
+      <div class="card"><span>Regime Confidence</span><strong id="regimeConfidence">-</strong></div>
+      <div class="card"><span>Trades Today</span><strong id="tradesToday">-</strong></div>
+      <div class="card"><span>Consecutive Losses</span><strong id="consecutiveLosses">-</strong></div>
+      <div class="card"><span>Kill Switch</span><strong id="killSwitch">-</strong></div>
+    </section>
+
+    <section class="grid panels">
+      <div class="card">
+        <h2>Open Positions</h2>
+        <table>
+          <thead><tr><th>Symbol</th><th>Side</th><th>Qty</th><th>Entry</th><th>Mark</th><th>Stop</th><th>uPnL</th></tr></thead>
+          <tbody id="positionsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>Recent Trades</h2>
+        <table>
+          <thead><tr><th>Time</th><th>Side</th><th>Qty</th><th>Price</th><th>Fees</th><th>Reason</th></tr></thead>
+          <tbody id="tradesBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="grid panels">
+      <div class="card">
+        <h2>AI Summary</h2>
+        <div id="aiSummary" class="summary"></div>
+        <div class="decisionBox">
+          <div class="decisionTitle">Last decision</div>
+          <div id="decisionReason" class="summary"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Risk Limits</h2>
+        <div id="riskLimits" class="summary"></div>
+      </div>
+    </section>
+
+    <section class="grid panels">
+      <div class="card fullspan">
+        <h2>Logs</h2>
+        <div id="logs" class="logbox"></div>
+      </div>
+    </section>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
